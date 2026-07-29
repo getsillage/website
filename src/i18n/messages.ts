@@ -87,7 +87,7 @@ export const messages: Record<Locale, Messages> = {
   en: {
     metaTitle: 'Sillage — Private self-hosted records',
     metaDescription:
-      'Sillage is a self-hosted, single-user space for capturing everyday records, revisiting history, and asking questions grounded in your own notes.',
+      'Self-hosted, single-user space for private records, history review, and AI answers grounded in your own notes.',
     skipToContent: 'Skip to content',
     navAria: 'Primary',
     navFeatures: 'Features',
@@ -102,7 +102,7 @@ export const messages: Record<Locale, Messages> = {
     heroEyebrow: 'Self-hosted · Single-user · Open source',
     heroTitle: 'A private space for records, history, and grounded answers',
     heroLead:
-      'Sillage is a personal record space for capturing daily notes, revisiting history, and asking questions with personal claims grounded in those records.',
+      'Self-hosted, single-user space for private records, history review, and AI answers grounded in your own notes.',
     ctaDeploy: 'Quick start',
     ctaGithub: 'View on GitHub',
     ctaDocs: 'Documentation',
@@ -186,9 +186,9 @@ export const messages: Record<Locale, Messages> = {
     privacyLink: 'Read AI usage and privacy',
     deployTitle: 'Deploy on your machine',
     deployLead:
-      'Pick a release tag, build the image, and bind only to localhost unless you add your own HTTPS front door.',
+      'Pull a release image from GHCR and bind only to localhost unless you add your own HTTPS front door.',
     deployNote:
-      'Public ingress, TLS, DNS, tunnels, and CDNs are yours to operate. Sillage stays vendor-neutral.',
+      'Public ingress, TLS, DNS, tunnels, and CDNs are yours to operate. Sillage stays vendor-neutral. Prefer version tags over latest in production.',
     deployOpen: 'After the container starts, open http://localhost:5231 and create the only account.',
     deployLatest: 'Latest release',
     deployDocs: 'Full deployment guide',
@@ -225,7 +225,7 @@ export const messages: Record<Locale, Messages> = {
   zh: {
     metaTitle: 'Sillage — 自托管的私密记录空间',
     metaDescription:
-      'Sillage 是一个自托管的单人记录空间，用来保存日常片段、回看历史，并基于自己的记录进行 AI 总结与问答。',
+      '自托管的单人记录空间：保存日常记录、回看历史，并基于自己的记录进行 AI 总结与问答。',
     skipToContent: '跳到正文',
     navAria: '主导航',
     navFeatures: '能力',
@@ -240,7 +240,7 @@ export const messages: Record<Locale, Messages> = {
     heroEyebrow: '自托管 · 单人 · 开源',
     heroTitle: '写下日常，回看历史，基于自己的记录提问',
     heroLead:
-      'Sillage 是一个自托管的单人记录空间：保存日常片段与附件，用列表、日历和搜索回看，并在可选的 AI 中基于记录做总结与有来源的问答。',
+      '自托管的单人记录空间：保存日常记录、回看历史，并基于自己的记录进行 AI 总结与问答。',
     ctaDeploy: '快速开始',
     ctaGithub: '查看 GitHub',
     ctaDocs: '文档',
@@ -321,8 +321,8 @@ export const messages: Record<Locale, Messages> = {
     ],
     privacyLink: '阅读 AI 使用与隐私',
     deployTitle: '部署到你的机器',
-    deployLead: '选择发布 tag 构建镜像；默认只绑定本机。公网访问请自行配置 HTTPS 入口。',
-    deployNote: '公网入口、TLS、DNS、隧道与 CDN 由部署者自管。Sillage 保持厂商中立。',
+    deployLead: '从 GHCR 拉取发布镜像；默认只绑定本机。公网访问请自行配置 HTTPS 入口。',
+    deployNote: '公网入口、TLS、DNS、隧道与 CDN 由部署者自管。Sillage 保持厂商中立。生产环境优先使用版本 tag，而不是 latest。',
     deployOpen: '容器启动后打开 http://localhost:5231，按提示创建唯一账号。',
     deployLatest: '最新版本',
     deployDocs: '完整部署说明',

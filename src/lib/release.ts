@@ -7,20 +7,12 @@ export type ReleaseInfo = {
 }
 
 function dockerSnippetForTag(tag: string): string {
-  return `git clone https://github.com/getsillage/sillage.git
-cd sillage
-git checkout ${tag}
-VERSION="$(git describe --tags --exact-match)"
-REVISION="$(git rev-parse HEAD)"
-docker build \\
-  --build-arg VERSION="$VERSION" \\
-  --build-arg REVISION="$REVISION" \\
-  -t "sillage:$VERSION" \\
-  -f scripts/Dockerfile .
+  const image = `ghcr.io/getsillage/sillage:${tag}`
+  return `docker pull ${image}
 docker run --rm \\
   -p 127.0.0.1:5231:5231 \\
   -v "$HOME/.sillage:/var/opt/sillage" \\
-  "sillage:$VERSION"`
+  ${image}`
 }
 
 export function fallbackRelease(): ReleaseInfo {
