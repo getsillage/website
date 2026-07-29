@@ -6,13 +6,12 @@ export type ReleaseInfo = {
   htmlUrl: string
 }
 
-function dockerSnippetForTag(tag: string): string {
-  const image = `ghcr.io/getsillage/sillage:${tag}`
-  return `docker pull ${image}
-docker run --rm \\
+/** One-command local install. Docker pulls the image when needed. */
+export function dockerSnippet(): string {
+  return `docker run --rm \\
   -p 127.0.0.1:5231:5231 \\
   -v "$HOME/.sillage:/var/opt/sillage" \\
-  ${image}`
+  ghcr.io/getsillage/sillage:latest`
 }
 
 export function fallbackRelease(): ReleaseInfo {
@@ -21,10 +20,6 @@ export function fallbackRelease(): ReleaseInfo {
     name: `Sillage ${SITE.defaultReleaseTag}`,
     htmlUrl: `https://github.com/${SITE.productRepo}/releases/tag/${SITE.defaultReleaseTag}`,
   }
-}
-
-export function dockerSnippet(tag: string = SITE.defaultReleaseTag): string {
-  return dockerSnippetForTag(tag)
 }
 
 /** Fetch the latest GitHub release; fall back to the pinned default tag. */
