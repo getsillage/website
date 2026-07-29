@@ -13,7 +13,7 @@ export const SITE = {
   githubOrg: 'getsillage',
   productRepo: 'getsillage/sillage',
   productRepoUrl: 'https://github.com/getsillage/sillage',
-  pageRepoUrl: 'https://github.com/getsillage/sillage-page',
+  pageRepoUrl: 'https://github.com/getsillage/website',
   /** Fallback when GitHub Releases cannot be reached at runtime. */
   defaultReleaseTag: 'v0.1.7',
   license: 'MIT',

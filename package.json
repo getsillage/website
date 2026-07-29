@@ -1,13 +1,13 @@
 {
-  "name": "sillage-page",
+  "name": "website",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "description": "Product showcase website for Sillage",
-  "homepage": "https://github.com/getsillage/sillage-page",
+  "homepage": "https://github.com/getsillage/website",
   "repository": {
     "type": "git",
-    "url": "https://github.com/getsillage/sillage-page.git"
+    "url": "https://github.com/getsillage/website.git"
   },
   "license": "MIT",
   "scripts": {

@@ -31,10 +31,10 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          # Custom domain: set repo variable SITE_URL and leave VITE_BASE empty/unset.
-          # Project Pages without custom domain: SITE_URL=https://ORG.github.io/REPO and VITE_BASE=/REPO/
-          VITE_SITE_URL: ${{ vars.SITE_URL }}
-          VITE_BASE: ${{ vars.VITE_BASE }}
+          # Custom domain: set repo variables SITE_URL and leave VITE_BASE empty.
+          # Default project Pages URL for this repo:
+          VITE_SITE_URL: ${{ vars.SITE_URL || 'https://getsillage.github.io/website' }}
+          VITE_BASE: ${{ vars.VITE_BASE || '/website/' }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
