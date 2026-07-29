@@ -20,7 +20,7 @@ export function Deploy() {
     return () => ac.abort()
   }, [])
 
-  const snippet = dockerSnippet(release.tag)
+  const snippet = dockerSnippet()
 
   async function handleCopy() {
     try {
