@@ -1,11 +1,39 @@
-import { useLocale } from '../i18n/LocaleContext'
+import { useEffect, useId, useState } from 'react'
+import { useLocale } from '../i18n/useLocale'
 import { LINKS } from '../i18n/messages'
 import { useTheme } from '../hooks/useTheme'
 import { ghostButtonClass, iconButtonClass, shellClass } from './ui'
 
+const NAV_HREFS = [
+  { href: '#features', key: 'navFeatures' as const },
+  { href: '#privacy', key: 'navPrivacy' as const },
+  { href: '#deploy', key: 'navDeploy' as const },
+  { href: '#clients', key: 'navClients' as const },
+]
+
 export function Header() {
   const { locale, setLocale, t } = useLocale()
   const { theme, toggleTheme } = useTheme()
+  const [menuOpen, setMenuOpen] = useState(false)
+  const menuId = useId()
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false)
+    }
+    document.addEventListener('keydown', onKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prev
+    }
+  }, [menuOpen])
+
+  function closeMenu() {
+    setMenuOpen(false)
+  }
 
   return (
     <header className="sticky top-0 z-40 border-b border-gray-200/70 bg-gray-50/85 backdrop-blur-md dark:border-gray-800/80 dark:bg-gray-950/85">
@@ -13,6 +41,7 @@ export function Header() {
         <a
           href="#top"
           className="flex items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400/40"
+          onClick={closeMenu}
         >
           <img src="/sillage-icon.svg" alt="" width={28} height={28} className="h-7 w-7" />
           <span className="text-sm font-semibold tracking-tight text-gray-900 dark:text-gray-50">
@@ -20,19 +49,12 @@ export function Header() {
           </span>
         </a>
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
-          <a href="#features" className={ghostButtonClass}>
-            {t.navFeatures}
-          </a>
-          <a href="#privacy" className={ghostButtonClass}>
-            {t.navPrivacy}
-          </a>
-          <a href="#deploy" className={ghostButtonClass}>
-            {t.navDeploy}
-          </a>
-          <a href="#clients" className={ghostButtonClass}>
-            {t.navClients}
-          </a>
+        <nav className="hidden items-center gap-1 md:flex" aria-label={t.navAria}>
+          {NAV_HREFS.map((item) => (
+            <a key={item.href} href={item.href} className={ghostButtonClass}>
+              {t[item.key]}
+            </a>
+          ))}
         </nav>
 
         <div className="flex items-center gap-1">
@@ -77,8 +99,48 @@ export function Header() {
           >
             <GitHubIcon />
           </a>
+
+          <button
+            type="button"
+            className={`${iconButtonClass} md:hidden`}
+            aria-expanded={menuOpen}
+            aria-controls={menuId}
+            aria-label={menuOpen ? t.menuClose : t.menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            {menuOpen ? <CloseIcon /> : <MenuIcon />}
+          </button>
         </div>
       </div>
+
+      {menuOpen ? (
+        <div
+          id={menuId}
+          className="border-t border-gray-200/80 bg-gray-50 dark:border-gray-800 dark:bg-gray-950 md:hidden"
+        >
+          <nav className={`${shellClass} flex flex-col gap-1 py-3`} aria-label={t.navAria}>
+            {NAV_HREFS.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="rounded-lg px-3 py-3 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-900"
+                onClick={closeMenu}
+              >
+                {t[item.key]}
+              </a>
+            ))}
+            <a
+              href={LINKS.github}
+              className="rounded-lg px-3 py-3 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-900"
+              target="_blank"
+              rel="noreferrer"
+              onClick={closeMenu}
+            >
+              {t.footerGithub}
+            </a>
+          </nav>
+        </div>
+      ) : null}
     </header>
   )
 }
@@ -121,6 +183,32 @@ function GitHubIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0 1 12 6.844a9.56 9.56 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .267.18.578.688.48A10.01 10.01 0 0 0 22 12c0-5.523-4.477-10-10-10Z" />
+    </svg>
+  )
+}
+
+function MenuIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M4 7h16M4 12h16M4 17h16"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+function CloseIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M6 6l12 12M18 6L6 18"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
     </svg>
   )
 }

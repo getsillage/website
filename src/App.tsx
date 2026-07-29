@@ -5,7 +5,7 @@ import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { Privacy } from './components/Privacy'
-import { useLocale } from './i18n/LocaleContext'
+import { useLocale } from './i18n/useLocale'
 
 export default function App() {
   const { t } = useLocale()

@@ -1,6 +1,7 @@
-import { useLocale } from '../i18n/LocaleContext'
+import { useLocale } from '../i18n/useLocale'
 import { LINKS } from '../i18n/messages'
 import { primaryButtonClass, secondaryButtonClass, shellClass } from './ui'
+import { ProductPreview } from './ProductPreview'
 
 export function Hero() {
   const { t } = useLocale()
@@ -71,6 +72,8 @@ export function Hero() {
             </a>
           </div>
         </div>
+
+        <ProductPreview />
 
         <div className="mx-auto mt-14 max-w-4xl sm:mt-16">
           <h2 className="sr-only">{t.flowTitle}</h2>

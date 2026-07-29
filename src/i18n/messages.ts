@@ -13,29 +13,17 @@ export const LINKS = {
   license: 'https://github.com/getsillage/sillage/blob/main/LICENSE',
 } as const
 
-export const DOCKER_SNIPPET = `git clone https://github.com/getsillage/sillage.git
-cd sillage
-git checkout v0.1.7   # use a release tag
-VERSION="$(git describe --tags --exact-match)"
-REVISION="$(git rev-parse HEAD)"
-docker build \\
-  --build-arg VERSION="$VERSION" \\
-  --build-arg REVISION="$REVISION" \\
-  -t "sillage:$VERSION" \\
-  -f scripts/Dockerfile .
-docker run --rm \\
-  -p 127.0.0.1:5231:5231 \\
-  -v "$HOME/.sillage:/var/opt/sillage" \\
-  "sillage:$VERSION"`
-
 type Messages = {
   metaTitle: string
   metaDescription: string
   skipToContent: string
+  navAria: string
   navFeatures: string
   navPrivacy: string
   navDeploy: string
   navClients: string
+  menuOpen: string
+  menuClose: string
   langLabel: string
   themeLight: string
   themeDark: string
@@ -46,6 +34,8 @@ type Messages = {
   ctaGithub: string
   ctaDocs: string
   ctaAndroid: string
+  previewLabel: string
+  previewCaption: string
   flowTitle: string
   flowSteps: { title: string; body: string }[]
   featuresTitle: string
@@ -61,6 +51,8 @@ type Messages = {
   deployTitle: string
   deployLead: string
   deployNote: string
+  deployOpen: string
+  deployLatest: string
   deployDocs: string
   deployReleases: string
   copyCode: string
@@ -86,7 +78,9 @@ type Messages = {
   footerSecurity: string
   footerContributing: string
   footerLicense: string
+  footerSiteSource: string
   footerRights: string
+  footerNoHosted: string
 }
 
 export const messages: Record<Locale, Messages> = {
@@ -95,13 +89,16 @@ export const messages: Record<Locale, Messages> = {
     metaDescription:
       'Sillage is a self-hosted, single-user space for capturing everyday records, revisiting history, and asking questions grounded in your own notes.',
     skipToContent: 'Skip to content',
+    navAria: 'Primary',
     navFeatures: 'Features',
     navPrivacy: 'Privacy',
     navDeploy: 'Deploy',
     navClients: 'Clients',
+    menuOpen: 'Open menu',
+    menuClose: 'Close menu',
     langLabel: 'Language',
-    themeLight: 'Light',
-    themeDark: 'Dark',
+    themeLight: 'Switch to light theme',
+    themeDark: 'Switch to dark theme',
     heroEyebrow: 'Self-hosted · Single-user · Open source',
     heroTitle: 'A private space for records, history, and grounded answers',
     heroLead:
@@ -110,6 +107,8 @@ export const messages: Record<Locale, Messages> = {
     ctaGithub: 'View on GitHub',
     ctaDocs: 'Documentation',
     ctaAndroid: 'Android',
+    previewLabel: 'Illustrated product interface preview',
+    previewCaption: 'Illustrative preview — not a live screenshot',
     flowTitle: 'How it works',
     flowSteps: [
       {
@@ -190,6 +189,8 @@ export const messages: Record<Locale, Messages> = {
       'Pick a release tag, build the image, and bind only to localhost unless you add your own HTTPS front door.',
     deployNote:
       'Public ingress, TLS, DNS, tunnels, and CDNs are yours to operate. Sillage stays vendor-neutral.',
+    deployOpen: 'After the container starts, open http://localhost:5231 and create the only account.',
+    deployLatest: 'Latest release',
     deployDocs: 'Full deployment guide',
     deployReleases: 'GitHub Releases',
     copyCode: 'Copy',
@@ -217,20 +218,25 @@ export const messages: Record<Locale, Messages> = {
     footerSecurity: 'Security policy',
     footerContributing: 'Contributing',
     footerLicense: 'MIT License',
+    footerSiteSource: 'This website',
     footerRights: 'Open source under the MIT License.',
+    footerNoHosted: 'No official hosted service.',
   },
   zh: {
     metaTitle: 'Sillage — 自托管的私密记录空间',
     metaDescription:
       'Sillage 是一个自托管的单人记录空间，用来保存日常片段、回看历史，并基于自己的记录进行 AI 总结与问答。',
     skipToContent: '跳到正文',
+    navAria: '主导航',
     navFeatures: '能力',
     navPrivacy: '隐私',
     navDeploy: '部署',
     navClients: '客户端',
+    menuOpen: '打开菜单',
+    menuClose: '关闭菜单',
     langLabel: '语言',
-    themeLight: '浅色',
-    themeDark: '深色',
+    themeLight: '切换到浅色主题',
+    themeDark: '切换到深色主题',
     heroEyebrow: '自托管 · 单人 · 开源',
     heroTitle: '写下日常，回看历史，基于自己的记录提问',
     heroLead:
@@ -239,6 +245,8 @@ export const messages: Record<Locale, Messages> = {
     ctaGithub: '查看 GitHub',
     ctaDocs: '文档',
     ctaAndroid: 'Android',
+    previewLabel: '产品界面示意预览',
+    previewCaption: '界面示意，非真实截图',
     flowTitle: '如何使用',
     flowSteps: [
       {
@@ -315,6 +323,8 @@ export const messages: Record<Locale, Messages> = {
     deployTitle: '部署到你的机器',
     deployLead: '选择发布 tag 构建镜像；默认只绑定本机。公网访问请自行配置 HTTPS 入口。',
     deployNote: '公网入口、TLS、DNS、隧道与 CDN 由部署者自管。Sillage 保持厂商中立。',
+    deployOpen: '容器启动后打开 http://localhost:5231，按提示创建唯一账号。',
+    deployLatest: '最新版本',
     deployDocs: '完整部署说明',
     deployReleases: 'GitHub Releases',
     copyCode: '复制',
@@ -340,6 +350,8 @@ export const messages: Record<Locale, Messages> = {
     footerSecurity: '安全策略',
     footerContributing: '贡献指南',
     footerLicense: 'MIT 许可证',
+    footerSiteSource: '本网站源码',
     footerRights: '以 MIT 许可证开源。',
+    footerNoHosted: '无官方托管服务。',
   },
 }

@@ -1,7 +1,6 @@
 import {
   createContext,
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useState,
@@ -11,13 +10,25 @@ import { messages, type Locale } from './messages'
 
 const LOCALE_KEY = 'sillage-page-locale'
 
-type LocaleContextValue = {
+export type LocaleContextValue = {
   locale: Locale
   setLocale: (locale: Locale) => void
   t: (typeof messages)['en']
 }
 
-const LocaleContext = createContext<LocaleContextValue | null>(null)
+// Shared with useLocale.ts; not a second component export.
+// oxlint-disable-next-line react/only-export-components -- context object for hook module
+export const LocaleContext = createContext<LocaleContextValue | null>(null)
+
+function setMeta(name: string, content: string, attr: 'name' | 'property' = 'name') {
+  let el = document.querySelector(`meta[${attr}="${name}"]`)
+  if (!el) {
+    el = document.createElement('meta')
+    el.setAttribute(attr, name)
+    document.head.appendChild(el)
+  }
+  el.setAttribute('content', content)
+}
 
 function detectLocale(): Locale {
   try {
@@ -45,10 +56,14 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   }, [])
 
   useEffect(() => {
+    const t = messages[locale]
     document.documentElement.lang = locale === 'zh' ? 'zh-CN' : 'en'
-    document.title = messages[locale].metaTitle
-    const meta = document.querySelector('meta[name="description"]')
-    if (meta) meta.setAttribute('content', messages[locale].metaDescription)
+    document.title = t.metaTitle
+    setMeta('description', t.metaDescription)
+    setMeta('og:title', t.metaTitle, 'property')
+    setMeta('og:description', t.metaDescription, 'property')
+    setMeta('twitter:title', t.metaTitle)
+    setMeta('twitter:description', t.metaDescription)
   }, [locale])
 
   const value = useMemo(
@@ -61,10 +76,4 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   )
 
   return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>
-}
-
-export function useLocale() {
-  const ctx = useContext(LocaleContext)
-  if (!ctx) throw new Error('useLocale must be used within LocaleProvider')
-  return ctx
 }

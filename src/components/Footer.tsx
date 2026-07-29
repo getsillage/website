@@ -1,10 +1,12 @@
 import type { ReactNode } from 'react'
-import { useLocale } from '../i18n/LocaleContext'
+import { SITE } from '../config/site'
+import { useLocale } from '../i18n/useLocale'
 import { LINKS } from '../i18n/messages'
 import { shellClass } from './ui'
 
 export function Footer() {
   const { t } = useLocale()
+  const year = new Date().getFullYear()
 
   return (
     <footer className="border-t border-gray-200/80 bg-white/50 py-12 dark:border-gray-800/80 dark:bg-gray-950/50">
@@ -37,12 +39,16 @@ export function Footer() {
             <FooterLink href={LINKS.security}>{t.footerSecurity}</FooterLink>
             <FooterLink href={LINKS.contributing}>{t.footerContributing}</FooterLink>
             <FooterLink href={LINKS.license}>{t.footerLicense}</FooterLink>
+            <FooterLink href={SITE.pageRepoUrl}>{t.footerSiteSource}</FooterLink>
           </FooterColumn>
         </div>
 
-        <p className="mt-10 border-t border-gray-200/80 pt-6 text-xs text-gray-400 dark:border-gray-800/80 dark:text-gray-500">
-          {t.footerRights}
-        </p>
+        <div className="mt-10 flex flex-col gap-2 border-t border-gray-200/80 pt-6 text-xs text-gray-400 dark:border-gray-800/80 dark:text-gray-500 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {year} {SITE.name}. {t.footerRights}
+          </p>
+          <p>{t.footerNoHosted}</p>
+        </div>
       </div>
     </footer>
   )

@@ -2,24 +2,69 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/svg+xml" href="/sillage-icon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <meta
       name="description"
       content="Sillage is a self-hosted, single-user space for capturing everyday records, revisiting history, and asking questions grounded in your own notes."
     />
+    <meta
+      name="keywords"
+      content="Sillage, self-hosted, private journal, diary, notes, AI reflection, open source, Docker"
+    />
+    <meta name="author" content="Sillage contributors" />
+    <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#131313" media="(prefers-color-scheme: dark)" />
-    <meta property="og:title" content="Sillage" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/sillage-icon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <title>Sillage — Private self-hosted records</title>
+
+    <meta property="og:site_name" content="Sillage" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sillage — Private self-hosted records" />
     <meta
       property="og:description"
       content="Self-hosted private records, history review, and AI answers grounded in your own notes."
     />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
-    <title>Sillage — Private self-hosted records</title>
+    <meta property="og:image" content="/og.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="zh_CN" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sillage — Private self-hosted records" />
+    <meta
+      name="twitter:description"
+      content="Self-hosted private records, history review, and AI answers grounded in your own notes."
+    />
+    <meta name="twitter:image" content="/og.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Sillage",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "Web, Android, Docker",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Self-hosted, single-user space for private records, history review, and AI answers grounded in your own notes.",
+        "license": "https://opensource.org/licenses/MIT",
+        "codeRepository": "https://github.com/getsillage/sillage",
+        "isAccessibleForFree": true
+      }
+    </script>
+
     <script>
       (function () {
         try {

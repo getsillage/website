@@ -1,4 +1,4 @@
-import { useLocale } from '../i18n/LocaleContext'
+import { useLocale } from '../i18n/useLocale'
 import { panelClass, sectionLeadClass, sectionTitleClass, shellClass } from './ui'
 
 export function Features() {

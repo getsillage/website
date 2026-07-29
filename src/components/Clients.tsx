@@ -1,4 +1,4 @@
-import { useLocale } from '../i18n/LocaleContext'
+import { useLocale } from '../i18n/useLocale'
 import { LINKS } from '../i18n/messages'
 import { linkClass, panelClass, sectionLeadClass, sectionTitleClass, shellClass } from './ui'
 
