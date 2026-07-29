@@ -2,6 +2,7 @@ import { useEffect, useId, useState } from 'react'
 import { useLocale } from '../i18n/useLocale'
 import { LINKS } from '../i18n/messages'
 import { useTheme } from '../hooks/useTheme'
+import { assetUrl } from '../lib/assets'
 import { ghostButtonClass, iconButtonClass, shellClass } from './ui'
 
 const NAV_HREFS = [
@@ -43,7 +44,7 @@ export function Header() {
           className="flex items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400/40"
           onClick={closeMenu}
         >
-          <img src="/sillage-icon.svg" alt="" width={28} height={28} className="h-7 w-7" />
+          <img src={assetUrl('sillage-icon.svg')} alt="" width={28} height={28} className="h-7 w-7" />
           <span className="text-sm font-semibold tracking-tight text-gray-900 dark:text-gray-50">
             Sillage
           </span>

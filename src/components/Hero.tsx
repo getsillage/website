@@ -1,5 +1,6 @@
 import { useLocale } from '../i18n/useLocale'
 import { LINKS } from '../i18n/messages'
+import { assetUrl } from '../lib/assets'
 import { primaryButtonClass, secondaryButtonClass, shellClass } from './ui'
 import { ProductPreview } from './ProductPreview'
 
@@ -11,7 +12,7 @@ export function Hero() {
       <div className={`${shellClass} pb-16 pt-14 sm:pb-20 sm:pt-20 lg:pt-24`}>
         <div className="mx-auto max-w-3xl text-center section-enter">
           <img
-            src="/sillage-icon.svg"
+            src={assetUrl('sillage-icon.svg')}
             alt=""
             width={80}
             height={80}

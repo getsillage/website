@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { SITE } from '../config/site'
 import { useLocale } from '../i18n/useLocale'
 import { LINKS } from '../i18n/messages'
+import { assetUrl } from '../lib/assets'
 import { shellClass } from './ui'
 
 export function Footer() {
@@ -14,7 +15,7 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2.5">
-              <img src="/sillage-icon.svg" alt="" width={24} height={24} className="h-6 w-6" />
+              <img src={assetUrl('sillage-icon.svg')} alt="" width={24} height={24} className="h-6 w-6" />
               <span className="text-sm font-semibold text-gray-900 dark:text-gray-50">Sillage</span>
             </div>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-gray-500 dark:text-gray-400">

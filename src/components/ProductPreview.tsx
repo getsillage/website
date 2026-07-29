@@ -1,4 +1,5 @@
 import { useLocale } from '../i18n/useLocale'
+import { assetUrl } from '../lib/assets'
 
 /** Decorative UI sketch of the product — not a live screenshot. */
 export function ProductPreview() {
@@ -47,7 +48,7 @@ export function ProductPreview() {
           <span className="h-2.5 w-2.5 rounded-full bg-gray-200 dark:bg-gray-700" />
           <div className="ml-2 flex flex-1 items-center justify-center">
             <span className="inline-flex items-center gap-1.5 rounded-md bg-gray-50 px-3 py-1 text-[11px] text-gray-400 dark:bg-gray-950 dark:text-gray-500">
-              <img src="/sillage-icon.svg" alt="" className="h-3.5 w-3.5" width={14} height={14} />
+              <img src={assetUrl('sillage-icon.svg')} alt="" className="h-3.5 w-3.5" width={14} height={14} />
               localhost:5231
             </span>
           </div>
@@ -57,7 +58,7 @@ export function ProductPreview() {
           {/* Sidebar */}
           <aside className="hidden border-r border-gray-100 bg-gray-50/80 p-3 dark:border-gray-800 dark:bg-gray-950/50 sm:block">
             <div className="mb-4 flex items-center gap-2 px-2 pt-1">
-              <img src="/sillage-icon.svg" alt="" className="h-5 w-5" width={20} height={20} />
+              <img src={assetUrl('sillage-icon.svg')} alt="" className="h-5 w-5" width={20} height={20} />
               <span className="text-xs font-semibold text-gray-800 dark:text-gray-100">Sillage</span>
             </div>
             <ul className="space-y-1">

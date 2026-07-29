@@ -1,7 +1,7 @@
 /**
  * Finalize dist/ for production hosts:
  * - rewrite robots.txt + sitemap.xml with absolute SITE URL
- * - inject absolute og:url / canonical into index.html when VITE_SITE_URL is set
+ * - inject absolute og:url / canonical / og:image into index.html when VITE_SITE_URL is set
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join, dirname } from 'node:path'
@@ -21,11 +21,10 @@ const robots = siteUrl
   : `User-agent: *\nAllow: /\n\nSitemap: /sitemap.xml\n`
 
 const lastmod = new Date().toISOString().slice(0, 10)
-const loc = siteUrl || ''
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>${loc || '/'}</loc>
+    <loc>${siteUrl || '/'}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -39,9 +38,11 @@ writeFileSync(join(dist, 'sitemap.xml'), sitemap)
 const indexPath = join(dist, 'index.html')
 if (siteUrl && existsSync(indexPath)) {
   let html = readFileSync(indexPath, 'utf8')
-  // Ensure absolute OG image / canonical for crawlers that do not resolve relative URLs well
-  html = html.replaceAll('content="/og.png"', `content="${siteUrl}/og.png"`)
-  html = html.replaceAll('href="/og.png"', `href="${siteUrl}/og.png"`)
+  // Absolute OG image for crawlers (matches any base-prefixed path to og.png)
+  html = html.replace(
+    /content="[^"]*\/og\.png"/g,
+    `content="${siteUrl}/og.png"`,
+  )
   if (!html.includes('rel="canonical"')) {
     html = html.replace(
       '</head>',
@@ -54,5 +55,4 @@ if (siteUrl && existsSync(indexPath)) {
   console.log('postbuild: no VITE_SITE_URL; robots/sitemap use relative paths')
 }
 
-// GitHub Pages SPA 404 helper already copied from public/
 console.log('postbuild: ok')
