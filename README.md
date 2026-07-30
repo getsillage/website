@@ -25,6 +25,16 @@ npm install
 npm run dev
 ```
 
+## Verification
+
+```bash
+make check          # lint, typecheck, build, product blurb
+make check-web
+make check-docs
+```
+
+CI runs `make check` on pull requests and `main`.
+
 Optional local env (see `.env.example`):
 
 ```bash
