@@ -28,12 +28,13 @@ npm run dev
 ## Verification
 
 ```bash
-make check          # lint, typecheck, build, product blurb
+make check          # install, dependency audit, lint, typecheck, build, docs, Actions pins
 make check-web
 make check-docs
+make check-actions
 ```
 
-CI runs `make check` on pull requests and `main`.
+CI runs `make check` on pull requests and `main`. The GitHub Pages workflow runs the same gate before uploading a deployable artifact. Third-party Actions are pinned to immutable commit SHAs.
 
 Optional local env (see `.env.example`):
 
