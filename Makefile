@@ -9,8 +9,8 @@ SHELL := /bin/bash
 help:
 	@printf '%s\n' \
 		'Website verification:' \
-		'  make check          install + audit + lint + typecheck + build + docs' \
-		'  make check-web      npm ci, dependency audit, lint, typecheck, build' \
+		'  make check          install + audit + lint + typecheck + tests + build + docs' \
+		'  make check-web      npm ci, dependency audit, lint, typecheck, tests, build' \
 		'  make check-docs     product one-liner alignment with monorepo positioning' \
 		'  make check-actions  verify GitHub Actions use immutable commit SHAs'
 
@@ -21,6 +21,7 @@ check-web:
 	npm audit --audit-level=high
 	npm run lint
 	npm run typecheck
+	npm test
 	npm run build
 
 check-docs: check-actions

@@ -31,6 +31,7 @@ jobs:
           # Default project Pages URL for this repo:
           VITE_SITE_URL: ${{ vars.SITE_URL || 'https://getsillage.github.io/website' }}
           VITE_BASE: ${{ vars.VITE_BASE || '/website/' }}
+          REQUIRE_SITE_URL: '1'
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3

@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { useLocale } from '../i18n/useLocale'
 import { LINKS } from '../i18n/messages'
 import { useTheme } from '../hooks/useTheme'
@@ -17,18 +17,22 @@ export function Header() {
   const { theme, toggleTheme } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
   const menuId = useId()
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+  const firstMenuItemRef = useRef<HTMLAnchorElement>(null)
 
   useEffect(() => {
     if (!menuOpen) return
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMenuOpen(false)
+      if (e.key === 'Escape') {
+        setMenuOpen(false)
+        menuButtonRef.current?.focus()
+      }
     }
     document.addEventListener('keydown', onKey)
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+    const focusFrame = window.requestAnimationFrame(() => firstMenuItemRef.current?.focus())
     return () => {
       document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = prev
+      window.cancelAnimationFrame(focusFrame)
     }
   }, [menuOpen])
 
@@ -102,6 +106,7 @@ export function Header() {
           </a>
 
           <button
+            ref={menuButtonRef}
             type="button"
             className={`${iconButtonClass} md:hidden`}
             aria-expanded={menuOpen}
@@ -122,6 +127,7 @@ export function Header() {
           <nav className={`${shellClass} flex flex-col gap-1 py-3`} aria-label={t.navAria}>
             {NAV_HREFS.map((item) => (
               <a
+                ref={item === NAV_HREFS[0] ? firstMenuItemRef : undefined}
                 key={item.href}
                 href={item.href}
                 className="rounded-lg px-3 py-3 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-900"
