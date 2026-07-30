@@ -19,7 +19,7 @@ export default function App() {
         {t.skipToContent}
       </a>
       <Header />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Hero />
         <Features />
         <Privacy />

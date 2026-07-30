@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocale } from '../i18n/useLocale'
 import { LINKS } from '../i18n/messages'
 import {
@@ -12,25 +12,35 @@ import { secondaryButtonClass, sectionLeadClass, sectionTitleClass, shellClass }
 export function Deploy() {
   const { t } = useLocale()
   const [release, setRelease] = useState<ReleaseInfo>(() => fallbackRelease())
-  const [copied, setCopied] = useState(false)
+  const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'failed'>('idle')
+  const copyResetTimer = useRef<number | undefined>(undefined)
 
   useEffect(() => {
     const ac = new AbortController()
-    void fetchLatestRelease(ac.signal).then(setRelease)
-    return () => ac.abort()
+    void fetchLatestRelease(ac.signal).then((next) => {
+      if (!ac.signal.aborted) setRelease(next)
+    })
+    return () => {
+      ac.abort()
+      if (copyResetTimer.current !== undefined) window.clearTimeout(copyResetTimer.current)
+    }
   }, [])
 
   const snippet = dockerSnippet()
 
   async function handleCopy() {
+    if (copyResetTimer.current !== undefined) window.clearTimeout(copyResetTimer.current)
     try {
       await navigator.clipboard.writeText(snippet)
-      setCopied(true)
-      window.setTimeout(() => setCopied(false), 2000)
+      setCopyStatus('copied')
     } catch {
-      /* ignore */
+      setCopyStatus('failed')
     }
+    copyResetTimer.current = window.setTimeout(() => setCopyStatus('idle'), 2000)
   }
+
+  const copyLabel =
+    copyStatus === 'copied' ? t.copied : copyStatus === 'failed' ? t.copyFailed : t.copyCode
 
   return (
     <section
@@ -63,8 +73,11 @@ export function Deploy() {
             onClick={handleCopy}
             className="absolute right-3 top-3 inline-flex h-8 items-center rounded-md border border-gray-700 bg-gray-800 px-2.5 text-xs font-medium text-gray-100 transition hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400/50"
           >
-            {copied ? t.copied : t.copyCode}
+            {copyLabel}
           </button>
+          <span className="sr-only" role="status" aria-live="polite">
+            {copyStatus === 'idle' ? '' : copyLabel}
+          </span>
         </div>
 
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-500 dark:text-gray-400">

@@ -57,6 +57,7 @@ type Messages = {
   deployReleases: string
   copyCode: string
   copied: string
+  copyFailed: string
   clientsTitle: string
   clientsLead: string
   clientsWebTitle: string
@@ -194,6 +195,7 @@ export const messages: Record<Locale, Messages> = {
     deployReleases: 'GitHub Releases',
     copyCode: 'Copy',
     copied: 'Copied',
+    copyFailed: 'Copy failed',
     clientsTitle: 'Clients',
     clientsLead: 'One instance, two clients. Same records, same boundaries.',
     clientsWebTitle: 'Web',
@@ -328,6 +330,7 @@ export const messages: Record<Locale, Messages> = {
     deployReleases: 'GitHub Releases',
     copyCode: '复制',
     copied: '已复制',
+    copyFailed: '复制失败',
     clientsTitle: '客户端',
     clientsLead: '一个实例，两种客户端。同一套记录，同一套边界。',
     clientsWebTitle: 'Web',

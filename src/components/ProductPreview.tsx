@@ -97,9 +97,9 @@ export function ProductPreview() {
             </div>
 
             <div className="rounded-xl border border-gray-200 bg-gray-50/60 p-3 dark:border-gray-800 dark:bg-gray-950/40">
-              <div className="h-2 max-w-[12rem] rounded bg-gray-200 dark:bg-gray-800" style={{ width: '60%' }} />
+              <div className="h-2 w-3/5 max-w-[12rem] rounded bg-gray-200 dark:bg-gray-800" />
               <div className="mt-2 h-2 w-full rounded bg-gray-200/80 dark:bg-gray-800/80" />
-              <div className="mt-2 h-2 rounded bg-gray-200/70 dark:bg-gray-800/70" style={{ width: '80%' }} />
+              <div className="mt-2 h-2 w-4/5 rounded bg-gray-200/70 dark:bg-gray-800/70" />
             </div>
 
             <ul className="mt-4 space-y-2.5">

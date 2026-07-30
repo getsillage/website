@@ -9,6 +9,7 @@ This repository is separate from the product monorepo. Documentation, releases, 
 - Single-page product landing (English / Simplified Chinese)
 - Light and dark themes
 - SEO: Open Graph, Twitter cards, JSON-LD, robots.txt, sitemap
+- Hash-based Content Security Policy, security headers, and HTML cache controls
 - Latest release tag pulled from GitHub for the Docker quick start
 - Static build suitable for Cloudflare Pages, GitHub Pages, Netlify, etc.
 
@@ -28,12 +29,13 @@ npm run dev
 ## Verification
 
 ```bash
-make check          # lint, typecheck, build, product blurb
+make check          # install, audit, lint, typecheck, tests, build, docs, Actions pins
 make check-web
 make check-docs
+make check-actions
 ```
 
-CI runs `make check` on pull requests and `main`.
+CI runs `make check` on pull requests and `main`. The gate includes component, interaction, accessibility, release-fallback, and post-build security/SEO tests. The GitHub Pages workflow runs the same gate before uploading a deployable artifact. Third-party Actions are pinned to immutable commit SHAs.
 
 Optional local env (see `.env.example`):
 
@@ -49,7 +51,7 @@ VITE_SITE_URL=https://your.domain npm run build
 npm run preview
 ```
 
-Output is written to `dist/`. The post-build step rewrites `robots.txt` / `sitemap.xml` and injects absolute canonical / OG URLs when `VITE_SITE_URL` is set.
+Output is written to `dist/`. The post-build step rewrites `robots.txt` / `sitemap.xml`, injects absolute canonical / OG URLs when `VITE_SITE_URL` is set, generates a base-aware `404.html`, and applies a CSP whose hashes match the final inline bootstrap scripts. Production jobs may set `REQUIRE_SITE_URL=1` to reject missing, non-HTTPS, or base-mismatched public URLs.
 
 ## Deploy
 
