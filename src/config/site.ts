@@ -15,7 +15,7 @@ export const SITE = {
   productRepoUrl: 'https://github.com/getsillage/sillage',
   pageRepoUrl: 'https://github.com/getsillage/website',
   /** Fallback when GitHub Releases cannot be reached at runtime. */
-  defaultReleaseTag: 'v0.2.0',
+  defaultReleaseTag: 'v0.3.0',
   license: 'MIT',
 } as const
 
