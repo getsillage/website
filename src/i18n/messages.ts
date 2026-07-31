@@ -10,6 +10,7 @@ export const LINKS = {
   android: 'https://github.com/getsillage/sillage/tree/main/android',
   security: 'https://github.com/getsillage/sillage/blob/main/SECURITY.md',
   contributing: 'https://github.com/getsillage/sillage/blob/main/CONTRIBUTING.md',
+  brand: 'https://github.com/getsillage/.github/blob/main/BRAND.md',
   license: 'https://github.com/getsillage/sillage/blob/main/LICENSE',
 } as const
 
@@ -29,7 +30,9 @@ type Messages = {
   themeDark: string
   heroEyebrow: string
   heroTitle: string
+  heroTitleSecond: string
   heroLead: string
+  heroProofs: string[]
   ctaDeploy: string
   ctaGithub: string
   ctaDocs: string
@@ -41,17 +44,26 @@ type Messages = {
   featuresTitle: string
   featuresLead: string
   features: { title: string; body: string }[]
+  facts: { value: string; label: string }[]
   notTitle: string
   notLead: string
   notItems: string[]
   privacyTitle: string
   privacyLead: string
   privacyItems: { title: string; body: string }[]
+  privacyFlowLabel: string
+  privacyFlowLocalKicker: string
+  privacyFlowLocalTitle: string
+  privacyFlowLocalItems: string[]
+  privacyFlowOptional: string
+  privacyFlowProviderKicker: string
+  privacyFlowProviderTitle: string
   privacyLink: string
   deployTitle: string
   deployLead: string
   deployNote: string
   deployOpen: string
+  deploySteps: { title: string; body: string }[]
   deployLatest: string
   deployDocs: string
   deployReleases: string
@@ -62,8 +74,10 @@ type Messages = {
   clientsLead: string
   clientsWebTitle: string
   clientsWebBody: string
+  clientsWebPoints: string[]
   clientsAndroidTitle: string
   clientsAndroidBody: string
+  clientsAndroidPoints: string[]
   clientsStack: string
   footerTagline: string
   footerProduct: string
@@ -78,6 +92,7 @@ type Messages = {
   footerAndroid: string
   footerSecurity: string
   footerContributing: string
+  footerBrand: string
   footerLicense: string
   footerSiteSource: string
   footerRights: string
@@ -86,7 +101,7 @@ type Messages = {
 
 export const messages: Record<Locale, Messages> = {
   en: {
-    metaTitle: 'Sillage — Private self-hosted records',
+    metaTitle: 'Sillage — Self-hosted private records with grounded AI',
     metaDescription:
       'Self-hosted, single-user space for private records, history review, and AI answers grounded in your own notes.',
     skipToContent: 'Skip to content',
@@ -101,9 +116,11 @@ export const messages: Record<Locale, Messages> = {
     themeLight: 'Switch to light theme',
     themeDark: 'Switch to dark theme',
     heroEyebrow: 'Self-hosted · Single-user · Open source',
-    heroTitle: 'A private space for records, history, and grounded answers',
+    heroTitle: 'Your records stay with you.',
+    heroTitleSecond: 'Your answers come with sources.',
     heroLead:
       'Self-hosted, single-user space for private records, history review, and AI answers grounded in your own notes.',
+    heroProofs: ['No Sillage cloud account', 'Web + Android', 'MIT licensed'],
     ctaDeploy: 'Quick start',
     ctaGithub: 'View on GitHub',
     ctaDocs: 'Documentation',
@@ -154,6 +171,11 @@ export const messages: Record<Locale, Messages> = {
         body: 'Write on the go with the Android client and sync records manually when ready.',
       },
     ],
+    facts: [
+      { value: '1', label: 'account per instance' },
+      { value: '2', label: 'Web and Android clients' },
+      { value: '0', label: 'Sillage-hosted services' },
+    ],
     notTitle: 'What Sillage is not',
     notLead: 'Boundaries are part of the product. Knowing them builds trust.',
     notItems: [
@@ -184,12 +206,24 @@ export const messages: Record<Locale, Messages> = {
         body: 'Summaries and Ask send only what that operation needs. Attachment bytes are not uploaded as AI content.',
       },
     ],
+    privacyFlowLabel: 'Sillage data flow',
+    privacyFlowLocalKicker: 'On your machine',
+    privacyFlowLocalTitle: 'Your Sillage instance',
+    privacyFlowLocalItems: ['SQLite records', 'Attachment files', 'Encrypted provider keys'],
+    privacyFlowOptional: 'Only when you choose Summary or Ask',
+    privacyFlowProviderKicker: 'Optional external request',
+    privacyFlowProviderTitle: 'Your configured AI endpoint',
     privacyLink: 'Read AI usage and privacy',
     deployTitle: 'Deploy on your machine',
     deployLead: 'One Docker command. Data stays on your machine; bind to localhost by default.',
     deployNote:
       'Need Compose, HTTPS, or a pinned image? See the deployment guide. Public ingress, TLS, DNS, tunnels, and CDNs are yours to operate.',
     deployOpen: 'Then open http://localhost:5231 and create the only account.',
+    deploySteps: [
+      { title: 'Run', body: 'Start the published container on localhost.' },
+      { title: 'Create', body: 'Open the app and create the instance’s only account.' },
+      { title: 'Keep', body: 'Back up the complete data directory before upgrades.' },
+    ],
     deployLatest: 'Latest release',
     deployDocs: 'Full deployment guide',
     deployReleases: 'GitHub Releases',
@@ -201,9 +235,11 @@ export const messages: Record<Locale, Messages> = {
     clientsWebTitle: 'Web',
     clientsWebBody:
       'React interface embedded in the Go binary. Light and dark themes, English and Simplified Chinese.',
+    clientsWebPoints: ['No separate frontend service', 'Responsive desktop and mobile UI', 'Included in every container image'],
     clientsAndroidTitle: 'Android',
     clientsAndroidBody:
       'Native Kotlin and Jetpack Compose client with online and offline writing, and manual record sync.',
+    clientsAndroidPoints: ['Android 8.0 and later', 'Offline-first local writing', 'Manual, explicit synchronization'],
     clientsStack: 'Go · Echo · SQLite · React · TypeScript · Kotlin · Compose · Protobuf',
     footerTagline: 'Self-hosted private records.',
     footerProduct: 'Product',
@@ -218,6 +254,7 @@ export const messages: Record<Locale, Messages> = {
     footerAndroid: 'Android',
     footerSecurity: 'Security policy',
     footerContributing: 'Contributing',
+    footerBrand: 'Brand guide',
     footerLicense: 'MIT License',
     footerSiteSource: 'This website',
     footerRights: 'Open source under the MIT License.',
@@ -239,9 +276,11 @@ export const messages: Record<Locale, Messages> = {
     themeLight: '切换到浅色主题',
     themeDark: '切换到深色主题',
     heroEyebrow: '自托管 · 单人 · 开源',
-    heroTitle: '写下日常，回看历史，基于自己的记录提问',
+    heroTitle: '记录留在你的机器里。',
+    heroTitleSecond: '答案带着来源。',
     heroLead:
       '自托管的单人记录空间：保存日常记录、回看历史，并基于自己的记录进行 AI 总结与问答。',
+    heroProofs: ['无需 Sillage 云端账号', 'Web + Android', 'MIT 开源'],
     ctaDeploy: '快速开始',
     ctaGithub: '查看 GitHub',
     ctaDocs: '文档',
@@ -291,6 +330,11 @@ export const messages: Record<Locale, Messages> = {
         body: 'Android 可离线写记录，需要时再手动同步。',
       },
     ],
+    facts: [
+      { value: '1', label: '个实例唯一账号' },
+      { value: '2', label: '个 Web 与 Android 客户端' },
+      { value: '0', label: '项由 Sillage 提供的托管服务' },
+    ],
     notTitle: 'Sillage 不是什么',
     notLead: '边界是产品的一部分。说清楚，反而更值得信任。',
     notItems: [
@@ -320,11 +364,23 @@ export const messages: Record<Locale, Messages> = {
         body: '总结与问答只发送该操作所需内容。附件字节不会作为 AI 内容上传。',
       },
     ],
+    privacyFlowLabel: 'Sillage 数据流',
+    privacyFlowLocalKicker: '保存在你的机器',
+    privacyFlowLocalTitle: '你的 Sillage 实例',
+    privacyFlowLocalItems: ['SQLite 记录', '附件文件', '加密的服务商密钥'],
+    privacyFlowOptional: '仅在你主动使用总结或问答时',
+    privacyFlowProviderKicker: '可选的外部请求',
+    privacyFlowProviderTitle: '你配置的 AI 端点',
     privacyLink: '阅读 AI 使用与隐私',
     deployTitle: '部署到你的机器',
     deployLead: '一条 Docker 命令即可。数据保存在本机，默认只绑定 localhost。',
     deployNote: '需要 Compose、HTTPS 或固定某一镜像时，见部署说明。公网入口、TLS、DNS、隧道与 CDN 由你自行管理。',
     deployOpen: '然后打开 http://localhost:5231，按提示创建唯一账号。',
+    deploySteps: [
+      { title: '运行', body: '在 localhost 启动已发布的容器镜像。' },
+      { title: '创建', body: '打开应用并创建这个实例的唯一账号。' },
+      { title: '保管', body: '升级前备份完整数据目录。' },
+    ],
     deployLatest: '最新版本',
     deployDocs: '完整部署说明',
     deployReleases: 'GitHub Releases',
@@ -335,8 +391,10 @@ export const messages: Record<Locale, Messages> = {
     clientsLead: '一个实例，两种客户端。同一套记录，同一套边界。',
     clientsWebTitle: 'Web',
     clientsWebBody: 'React 界面嵌入 Go 二进制。支持浅色/深色主题，以及简体中文与英文。',
+    clientsWebPoints: ['无需单独部署前端服务', '适配桌面与移动浏览器', '随每个容器镜像一同发布'],
     clientsAndroidTitle: 'Android',
     clientsAndroidBody: 'Kotlin 与 Jetpack Compose 原生客户端，支持在线/离线书写与手动同步记录。',
+    clientsAndroidPoints: ['支持 Android 8.0 及以上', '离线优先的本地书写', '由用户明确触发手动同步'],
     clientsStack: 'Go · Echo · SQLite · React · TypeScript · Kotlin · Compose · Protobuf',
     footerTagline: '自托管的私密记录空间。',
     footerProduct: '产品',
@@ -351,6 +409,7 @@ export const messages: Record<Locale, Messages> = {
     footerAndroid: 'Android',
     footerSecurity: '安全策略',
     footerContributing: '贡献指南',
+    footerBrand: '品牌规范',
     footerLicense: 'MIT 许可证',
     footerSiteSource: '本网站源码',
     footerRights: '以 MIT 许可证开源。',

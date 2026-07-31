@@ -8,7 +8,6 @@ import { ghostButtonClass, iconButtonClass, shellClass } from './ui'
 const NAV_HREFS = [
   { href: '#features', key: 'navFeatures' as const },
   { href: '#privacy', key: 'navPrivacy' as const },
-  { href: '#deploy', key: 'navDeploy' as const },
   { href: '#clients', key: 'navClients' as const },
 ]
 
@@ -41,16 +40,21 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-gray-200/70 bg-gray-50/85 backdrop-blur-md dark:border-gray-800/80 dark:bg-gray-950/85">
-      <div className={`${shellClass} flex h-14 items-center justify-between gap-3`}>
+    <header className="sticky top-0 z-40 border-b border-gray-200/70 bg-gray-50/90 backdrop-blur-xl dark:border-gray-800/80 dark:bg-gray-950/90">
+      <div className={`${shellClass} flex h-16 items-center justify-between gap-3`}>
         <a
           href="#top"
           className="flex items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400/40"
           onClick={closeMenu}
         >
           <img src={assetUrl('sillage-icon.svg')} alt="" width={28} height={28} className="h-7 w-7" />
-          <span className="text-sm font-semibold tracking-tight text-gray-900 dark:text-gray-50">
-            Sillage
+          <span>
+            <span className="block text-sm font-semibold tracking-tight text-gray-900 dark:text-gray-50">
+              Sillage
+            </span>
+            <span className="hidden text-[0.625rem] text-gray-400 dark:text-gray-500 sm:block">
+              {t.footerTagline}
+            </span>
           </span>
         </a>
 
@@ -60,6 +64,12 @@ export function Header() {
               {t[item.key]}
             </a>
           ))}
+          <a
+            href="#deploy"
+            className="ml-1 inline-flex h-9 items-center justify-center rounded-lg bg-gray-900 px-4 text-sm font-medium text-white transition hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400/45 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-white"
+          >
+            {t.navDeploy}
+          </a>
         </nav>
 
         <div className="flex items-center gap-1">
@@ -136,6 +146,13 @@ export function Header() {
                 {t[item.key]}
               </a>
             ))}
+            <a
+              href="#deploy"
+              className="rounded-lg bg-gray-900 px-3 py-3 text-sm font-medium text-white dark:bg-gray-100 dark:text-gray-900"
+              onClick={closeMenu}
+            >
+              {t.navDeploy}
+            </a>
             <a
               href={LINKS.github}
               className="rounded-lg px-3 py-3 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-900"

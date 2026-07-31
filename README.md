@@ -85,6 +85,7 @@ Copy tracks the main repository:
 
 - [README](https://github.com/getsillage/sillage/blob/main/README.md)
 - [Product guidance](https://github.com/getsillage/sillage/blob/main/docs/development/product-guidance.md)
+- [Brand and public content guide](https://github.com/getsillage/.github/blob/main/BRAND.md)
 - [Deployment guide](https://github.com/getsillage/sillage/blob/main/docs/user/deployment.md)
 - [AI usage and privacy](https://github.com/getsillage/sillage/blob/main/docs/user/ai.md)
 

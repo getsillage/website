@@ -36,16 +36,17 @@ export function ProductPreview() {
 
   return (
     <div
-      className="product-preview mx-auto mt-14 max-w-4xl sm:mt-16"
+      className="product-preview preview-float relative mx-auto w-full max-w-[34rem] lg:justify-self-end"
       role="img"
       aria-label={t.previewLabel}
     >
-      <div className="overflow-hidden rounded-2xl border border-gray-200/90 bg-white shadow-xl shadow-gray-900/[0.06] dark:border-gray-800 dark:bg-gray-900 dark:shadow-black/40">
+      <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-brand-trail/[0.08] via-transparent to-brand-glimmer/[0.08] blur-2xl dark:from-brand-echo/10 dark:to-brand-glimmer/5" />
+      <div className="overflow-hidden rounded-[1.35rem] border border-gray-200/90 bg-white shadow-2xl shadow-gray-900/[0.1] dark:border-gray-700/80 dark:bg-gray-900 dark:shadow-black/45">
         {/* Title bar */}
-        <div className="flex items-center gap-2 border-b border-gray-100 px-4 py-3 dark:border-gray-800">
-          <span className="h-2.5 w-2.5 rounded-full bg-gray-200 dark:bg-gray-700" />
-          <span className="h-2.5 w-2.5 rounded-full bg-gray-200 dark:bg-gray-700" />
-          <span className="h-2.5 w-2.5 rounded-full bg-gray-200 dark:bg-gray-700" />
+        <div className="flex items-center gap-2 border-b border-gray-100 bg-gray-50/70 px-4 py-3 dark:border-gray-800 dark:bg-gray-950/60">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#ff6b5f]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#f4b942]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#4fc06d]" />
           <div className="ml-2 flex flex-1 items-center justify-center">
             <span className="inline-flex items-center gap-1.5 rounded-md bg-gray-50 px-3 py-1 text-[11px] text-gray-400 dark:bg-gray-950 dark:text-gray-500">
               <img src={assetUrl('sillage-icon.svg')} alt="" className="h-3.5 w-3.5" width={14} height={14} />
@@ -54,7 +55,7 @@ export function ProductPreview() {
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-[11rem_1fr]">
+        <div className="grid sm:grid-cols-[10rem_1fr]">
           {/* Sidebar */}
           <aside className="hidden border-r border-gray-100 bg-gray-50/80 p-3 dark:border-gray-800 dark:bg-gray-950/50 sm:block">
             <div className="mb-4 flex items-center gap-2 px-2 pt-1">
@@ -116,9 +117,12 @@ export function ProductPreview() {
               ))}
             </ul>
 
-            <div className="mt-4 rounded-xl border border-brand-trail/15 bg-gradient-to-br from-brand-trail/[0.04] to-brand-glimmer/[0.04] p-3 dark:border-brand-echo/20 dark:from-brand-echo/10 dark:to-brand-glimmer/5">
-              <p className="text-[11px] font-medium text-gray-500 dark:text-gray-400">{askHint}</p>
-              <div className="mt-2 flex flex-wrap gap-1.5">
+            <div className="mt-4 rounded-xl border border-brand-trail/15 bg-gradient-to-br from-brand-trail/[0.06] to-brand-glimmer/[0.05] p-3 dark:border-brand-echo/20 dark:from-brand-echo/10 dark:to-brand-glimmer/5">
+              <div className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-glimmer" aria-hidden />
+                <p className="text-[11px] font-medium text-gray-600 dark:text-gray-300">{askHint}</p>
+              </div>
+              <div className="mt-2.5 flex flex-wrap gap-1.5">
                 <span className="rounded-md bg-white/80 px-2 py-0.5 text-[10px] text-gray-500 ring-1 ring-gray-200 dark:bg-gray-900/80 dark:text-gray-400 dark:ring-gray-700">
                   {sourceLabel} · 3
                 </span>
@@ -127,7 +131,7 @@ export function ProductPreview() {
           </div>
         </div>
       </div>
-      <p className="mt-3 text-center text-[11px] text-gray-400 dark:text-gray-500">
+      <p className="mt-3 text-center text-[11px] text-gray-400 dark:text-gray-500 lg:text-right">
         {t.previewCaption}
       </p>
     </div>

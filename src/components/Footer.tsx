@@ -39,6 +39,7 @@ export function Footer() {
           <FooterColumn title={t.footerCommunity}>
             <FooterLink href={LINKS.security}>{t.footerSecurity}</FooterLink>
             <FooterLink href={LINKS.contributing}>{t.footerContributing}</FooterLink>
+            <FooterLink href={LINKS.brand}>{t.footerBrand}</FooterLink>
             <FooterLink href={LINKS.license}>{t.footerLicense}</FooterLink>
             <FooterLink href={SITE.pageRepoUrl}>{t.footerSiteSource}</FooterLink>
           </FooterColumn>
