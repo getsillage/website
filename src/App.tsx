@@ -23,8 +23,8 @@ export default function App() {
         <Hero />
         <Features />
         <Privacy />
-        <Deploy />
         <Clients />
+        <Deploy />
       </main>
       <Footer />
     </div>

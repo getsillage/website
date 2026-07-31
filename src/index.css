@@ -28,7 +28,12 @@
 
 html,
 body {
-  @apply bg-gray-50 dark:bg-gray-950;
+  background-color: #f7f7f4;
+}
+
+html.dark,
+html.dark body {
+  background-color: var(--color-gray-950);
 }
 
 html {
@@ -93,14 +98,64 @@ a {
 
 .hero-glow {
   background:
-    radial-gradient(ellipse 70% 50% at 50% -10%, rgb(36 78 71 / 0.12), transparent 60%),
-    radial-gradient(ellipse 40% 30% at 80% 20%, rgb(245 158 11 / 0.06), transparent 50%);
+    linear-gradient(rgb(36 78 71 / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(36 78 71 / 0.035) 1px, transparent 1px),
+    radial-gradient(ellipse 70% 58% at 18% 18%, rgb(36 78 71 / 0.13), transparent 62%),
+    radial-gradient(ellipse 42% 35% at 86% 8%, rgb(245 158 11 / 0.09), transparent 55%);
+  background-size:
+    44px 44px,
+    44px 44px,
+    auto,
+    auto;
 }
 
 .dark .hero-glow {
   background:
-    radial-gradient(ellipse 70% 50% at 50% -10%, rgb(167 220 201 / 0.08), transparent 60%),
-    radial-gradient(ellipse 40% 30% at 80% 20%, rgb(245 158 11 / 0.05), transparent 50%);
+    linear-gradient(rgb(167 220 201 / 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(167 220 201 / 0.025) 1px, transparent 1px),
+    radial-gradient(ellipse 70% 58% at 18% 18%, rgb(167 220 201 / 0.08), transparent 62%),
+    radial-gradient(ellipse 42% 35% at 86% 8%, rgb(245 158 11 / 0.055), transparent 55%);
+  background-size:
+    44px 44px,
+    44px 44px,
+    auto,
+    auto;
+}
+
+.feature-card {
+  box-shadow: inset -1px -1px 0 rgb(212 212 212 / 0.72);
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.feature-card:hover {
+  @apply bg-gray-50;
+  transform: translateY(-2px);
+}
+
+.dark .feature-card {
+  box-shadow: inset -1px -1px 0 rgb(64 64 64 / 0.72);
+}
+
+.dark .feature-card:hover {
+  @apply bg-gray-800;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .preview-float {
+    animation: preview-float 7s ease-in-out infinite;
+  }
+}
+
+@keyframes preview-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 .code-block {
@@ -108,5 +163,3 @@ a {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
     monospace;
 }
-
-
