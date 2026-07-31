@@ -51,8 +51,8 @@ describe('postbuild', () => {
     const dist = fixtureDist()
     const result = finalizeBuild({
       dist,
-      siteUrl: 'https://getsillage.github.io/website',
-      base: '/website/',
+      siteUrl: 'https://getsillage.github.io',
+      base: '/',
       requireSiteUrl: true,
       now: new Date('2026-07-30T00:00:00Z'),
     })
@@ -60,19 +60,17 @@ describe('postbuild', () => {
     const headers = readFileSync(join(dist, '_headers'), 'utf8')
     const notFound = readFileSync(join(dist, '404.html'), 'utf8')
 
-    expect(result.siteUrl).toBe('https://getsillage.github.io/website')
+    expect(result.siteUrl).toBe('https://getsillage.github.io')
+    expect(html).toContain('rel="canonical" href="https://getsillage.github.io/"')
     expect(html).toContain(
-      'rel="canonical" href="https://getsillage.github.io/website/"',
-    )
-    expect(html).toContain(
-      'property="og:image" content="https://getsillage.github.io/website/og.png"',
+      'property="og:image" content="https://getsillage.github.io/og.png"',
     )
     for (const hash of inlineScriptHashes(html)) expect(headers).toContain(hash)
     expect(headers).not.toContain('__SILLAGE_CSP__')
-    expect(notFound).toContain('content="0; url=/website/"')
+    expect(notFound).toContain('content="0; url=/"')
     expect(notFound).not.toMatch(/<script\b|<style\b|\sstyle=/)
     expect(readFileSync(join(dist, 'sitemap.xml'), 'utf8')).toContain(
-      '<loc>https://getsillage.github.io/website</loc>',
+      '<loc>https://getsillage.github.io</loc>',
     )
   })
 
@@ -81,7 +79,7 @@ describe('postbuild', () => {
     expect(() =>
       finalizeBuild({
         dist,
-        siteUrl: 'https://getsillage.github.io/website',
+        siteUrl: 'https://example.com/subpath',
         base: '/',
         requireSiteUrl: true,
       }),

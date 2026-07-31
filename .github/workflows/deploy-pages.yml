@@ -27,10 +27,9 @@ jobs:
       - name: Verify and build
         run: make check
         env:
-          # Custom domain: set repo variables SITE_URL and leave VITE_BASE empty.
-          # Default project Pages URL for this repo:
-          VITE_SITE_URL: ${{ vars.SITE_URL || 'https://getsillage.github.io/website' }}
-          VITE_BASE: ${{ vars.VITE_BASE || '/website/' }}
+          # Custom domain: override SITE_URL; organization Pages deploys at the root path.
+          VITE_SITE_URL: ${{ vars.SITE_URL || 'https://getsillage.github.io' }}
+          VITE_BASE: '/'
           REQUIRE_SITE_URL: '1'
 
       # actions/upload-pages-artifact is a composite action whose internal
