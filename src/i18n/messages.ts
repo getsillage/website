@@ -120,7 +120,7 @@ export const messages: Record<Locale, Messages> = {
     heroTitleSecond: 'Your answers come with sources.',
     heroLead:
       'Self-hosted, single-user space for private records, history review, and AI answers grounded in your own notes.',
-    heroProofs: ['No Sillage cloud account', 'Web + Android', 'MIT licensed'],
+    heroProofs: ['No hosted Sillage account', 'Web + Android', 'MIT licensed'],
     ctaDeploy: 'Quick start',
     ctaGithub: 'View on GitHub',
     ctaDocs: 'Documentation',
@@ -177,7 +177,7 @@ export const messages: Record<Locale, Messages> = {
       { value: '0', label: 'Sillage-hosted services' },
     ],
     notTitle: 'What Sillage is not',
-    notLead: 'Boundaries are part of the product. Knowing them builds trust.',
+    notLead: 'Sillage stays focused by leaving these capabilities out.',
     notItems: [
       'Not multi-user collaboration or social publishing',
       'Not a public profile, feed, tags, or discovery surface',
@@ -187,14 +187,14 @@ export const messages: Record<Locale, Messages> = {
     ],
     privacyTitle: 'Privacy by design',
     privacyLead:
-      'Your records live on your machine. AI is optional and only talks to endpoints you configure.',
+      'Your records stay in the data directory on the machine running Sillage. AI is optional and only connects to endpoints you configure.',
     privacyItems: [
       {
         title: 'Single account per instance',
         body: 'The first visit creates the only account. Everything else requires sign-in.',
       },
       {
-        title: 'Local data directory',
+        title: 'Instance data directory',
         body: 'SQLite, attachments, and runtime secrets stay under your data path—back up the whole directory.',
       },
       {
@@ -207,15 +207,16 @@ export const messages: Record<Locale, Messages> = {
       },
     ],
     privacyFlowLabel: 'Sillage data flow',
-    privacyFlowLocalKicker: 'On your machine',
+    privacyFlowLocalKicker: 'On the machine running Sillage',
     privacyFlowLocalTitle: 'Your Sillage instance',
     privacyFlowLocalItems: ['SQLite records', 'Attachment files', 'Encrypted provider keys'],
     privacyFlowOptional: 'Only when you choose Summary or Ask',
     privacyFlowProviderKicker: 'Optional external request',
     privacyFlowProviderTitle: 'Your configured AI endpoint',
     privacyLink: 'Read AI usage and privacy',
-    deployTitle: 'Deploy on your machine',
-    deployLead: 'One Docker command. Data stays on your machine; bind to localhost by default.',
+    deployTitle: 'Run Sillage on your own machine',
+    deployLead:
+      'One Docker command starts Sillage. Its data stays in the configured data directory, and the service listens on localhost by default.',
     deployNote:
       'Need Compose, HTTPS, or a pinned image? See the deployment guide. Public ingress, TLS, DNS, tunnels, and CDNs are yours to operate.',
     deployOpen: 'Then open http://localhost:5231 and create the only account.',
@@ -276,11 +277,11 @@ export const messages: Record<Locale, Messages> = {
     themeLight: '切换到浅色主题',
     themeDark: '切换到深色主题',
     heroEyebrow: '自托管 · 单人 · 开源',
-    heroTitle: '记录留在你的机器里。',
+    heroTitle: '记录由你自己保管。',
     heroTitleSecond: '答案带着来源。',
     heroLead:
       '自托管的单人记录空间：保存日常记录、回看历史，并基于自己的记录进行 AI 总结与问答。',
-    heroProofs: ['无需 Sillage 云端账号', 'Web + Android', 'MIT 开源'],
+    heroProofs: ['无需 Sillage 托管账号', 'Web + Android', 'MIT 开源'],
     ctaDeploy: '快速开始',
     ctaGithub: '查看 GitHub',
     ctaDocs: '文档',
@@ -331,12 +332,12 @@ export const messages: Record<Locale, Messages> = {
       },
     ],
     facts: [
-      { value: '1', label: '个实例唯一账号' },
-      { value: '2', label: '个 Web 与 Android 客户端' },
+      { value: '1', label: '个账号 / 每个实例' },
+      { value: '2', label: '个客户端：Web 与 Android' },
       { value: '0', label: '项由 Sillage 提供的托管服务' },
     ],
     notTitle: 'Sillage 不是什么',
-    notLead: '边界是产品的一部分。说清楚，反而更值得信任。',
+    notLead: 'Sillage 保持专注，因此不包含以下能力。',
     notItems: [
       '不是多人协作或社交发布平台',
       '不是公开主页、动态流、标签或发现系统',
@@ -345,14 +346,14 @@ export const messages: Record<Locale, Messages> = {
       '不是完整网盘或项目管理套件',
     ],
     privacyTitle: '隐私优先',
-    privacyLead: '记录保存在你的机器上。AI 可选，且只连接你配置的端点。',
+    privacyLead: '记录保存在运行 Sillage 的机器和数据目录中。AI 可选，且只连接你配置的端点。',
     privacyItems: [
       {
         title: '每实例唯一账号',
         body: '首次打开创建唯一账号。之后访问记录、附件、总结与问答均需登录。',
       },
       {
-        title: '本地数据目录',
+        title: '实例数据目录',
         body: 'SQLite、附件与运行时密钥位于你的数据路径——备份请复制整个目录。',
       },
       {
@@ -365,15 +366,15 @@ export const messages: Record<Locale, Messages> = {
       },
     ],
     privacyFlowLabel: 'Sillage 数据流',
-    privacyFlowLocalKicker: '保存在你的机器',
+    privacyFlowLocalKicker: '保存在运行 Sillage 的机器',
     privacyFlowLocalTitle: '你的 Sillage 实例',
     privacyFlowLocalItems: ['SQLite 记录', '附件文件', '加密的服务商密钥'],
     privacyFlowOptional: '仅在你主动使用总结或问答时',
     privacyFlowProviderKicker: '可选的外部请求',
     privacyFlowProviderTitle: '你配置的 AI 端点',
     privacyLink: '阅读 AI 使用与隐私',
-    deployTitle: '部署到你的机器',
-    deployLead: '一条 Docker 命令即可。数据保存在本机，默认只绑定 localhost。',
+    deployTitle: '在自己的机器上运行 Sillage',
+    deployLead: '一条 Docker 命令即可启动。数据保存在配置的数据目录中，服务默认只监听 localhost。',
     deployNote: '需要 Compose、HTTPS 或固定某一镜像时，见部署说明。公网入口、TLS、DNS、隧道与 CDN 由你自行管理。',
     deployOpen: '然后打开 http://localhost:5231，按提示创建唯一账号。',
     deploySteps: [

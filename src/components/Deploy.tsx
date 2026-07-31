@@ -68,12 +68,15 @@ export function Deploy() {
             </a>
           </div>
 
-          <div className="relative mt-10 grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-start lg:gap-12">
-            <ol className="space-y-6">
+          <div className="relative mt-10 grid gap-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:items-start lg:gap-12">
+            <ol className="min-w-0 space-y-6">
               {t.deploySteps.map((step, index) => (
-                <li key={step.title} className="grid grid-cols-[2rem_1fr] gap-3">
+                <li
+                  key={step.title}
+                  className="grid grid-cols-[2rem_minmax(0,1fr)] gap-3"
+                >
                   <span className="font-mono text-xs text-brand-glimmer">0{index + 1}</span>
-                  <div>
+                  <div className="min-w-0">
                     <h3 className="text-sm font-semibold text-white">{step.title}</h3>
                     <p className="mt-1 text-sm leading-6 text-gray-400">{step.body}</p>
                   </div>
@@ -81,9 +84,12 @@ export function Deploy() {
               ))}
             </ol>
 
-            <div>
+            <div className="min-w-0">
               <div className="relative">
-                <pre className="code-block border-gray-800 bg-black/60" tabIndex={0}>
+                <pre
+                  className="code-block w-full max-w-full border-gray-800 bg-black/60"
+                  tabIndex={0}
+                >
                   <code>{snippet}</code>
                 </pre>
                 <button

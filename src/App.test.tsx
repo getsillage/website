@@ -25,6 +25,16 @@ describe('marketing site interactions', () => {
     expect(screen.getByRole('link', { name: 'Quick start' })).toHaveAttribute('href', '#deploy')
     expect(screen.getByText('0', { selector: 'dt' })).toBeVisible()
     expect(screen.getByText('Sillage-hosted services')).toBeVisible()
+    expect(
+      screen.getByText(/data directory on the machine running Sillage/),
+    ).toBeVisible()
+    const codeBlock = document.querySelector('pre')
+    expect(codeBlock?.textContent).toBe(dockerSnippet())
+    expect(codeBlock).toHaveClass('w-full', 'max-w-full')
+    expect(codeBlock?.parentElement?.parentElement).toHaveClass('min-w-0')
+    expect(screen.getByRole('heading', { name: 'Run' }).closest('li')).toHaveClass(
+      'grid-cols-[2rem_minmax(0,1fr)]',
+    )
   })
 
   it('switches locale and theme and persists both choices', async () => {
@@ -39,7 +49,7 @@ describe('marketing site interactions', () => {
     expect(document.documentElement).toHaveAttribute('lang', 'zh-CN')
     expect(localStorage.getItem('sillage-page-locale')).toBe('zh')
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-      '记录留在你的机器里。答案带着来源。',
+      '记录由你自己保管。答案带着来源。',
     )
 
     await user.click(screen.getByRole('button', { name: '切换到深色主题' }))

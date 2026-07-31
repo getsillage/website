@@ -53,6 +53,31 @@ if (existsSync(messagesPath)) {
       failures.push(`possible official-hosting claim: ${line.trim().slice(0, 100)}`);
     }
   }
+
+  for (const fragment of [
+    "machine running Sillage",
+    "data directory",
+    "运行 Sillage 的机器",
+    "数据目录",
+  ]) {
+    if (!messages.includes(fragment)) {
+      failures.push(`src/i18n/messages.ts: missing precise data-location term: ${fragment}`);
+    }
+  }
+
+  const misleadingLocationClaims = [
+    "Your records live on your machine",
+    "Data stays on your machine",
+    "记录保存在你的机器上",
+    "数据保存在本机",
+  ];
+  for (const claim of misleadingLocationClaims) {
+    if (messages.includes(claim)) {
+      failures.push(
+        `src/i18n/messages.ts: ambiguous self-hosting location claim: ${claim}`,
+      );
+    }
+  }
 }
 
 if (failures.length > 0) {
