@@ -41,7 +41,7 @@ export function Footer() {
             <FooterLink href={LINKS.contributing}>{t.footerContributing}</FooterLink>
             <FooterLink href={LINKS.brand}>{t.footerBrand}</FooterLink>
             <FooterLink href={LINKS.license}>{t.footerLicense}</FooterLink>
-            <FooterLink href={SITE.pageRepoUrl}>{t.footerSiteSource}</FooterLink>
+            <FooterLink href={SITE.websiteRepoUrl}>{t.footerWebsiteRepository}</FooterLink>
           </FooterColumn>
         </div>
 
