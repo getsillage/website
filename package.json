@@ -4,10 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Product showcase website for Sillage",
-  "homepage": "https://github.com/getsillage/website",
+  "homepage": "https://getsillage.github.io/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/getsillage/website.git"
+    "url": "https://github.com/getsillage/getsillage.github.io.git"
   },
   "license": "MIT",
   "scripts": {

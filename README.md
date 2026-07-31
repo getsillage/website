@@ -57,10 +57,10 @@ Output is written to `dist/`. The post-build step rewrites `robots.txt` / `sitem
 
 ### GitHub Pages
 
-1. Push this repository to GitHub.
+1. Use the organization Pages repository name `getsillage.github.io`.
 2. Settings → Pages → Source: **GitHub Actions**.
-3. Optional: repository variable `SITE_URL` (e.g. `https://getsillage.github.io/website` or a custom domain).
-4. Push to `main` — workflow **Deploy GitHub Pages** builds and publishes `dist/`.
+3. The default public URL is `https://getsillage.github.io/`; set the repository variable `SITE_URL` only when using a custom domain.
+4. Push to `main` — workflow **Deploy GitHub Pages** builds and publishes `dist/` at the root path.
 
 For a custom domain, add a `CNAME` file under `public/` (or configure it in the Pages UI) and set `SITE_URL` to that domain.
 
