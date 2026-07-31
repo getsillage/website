@@ -35,7 +35,7 @@ make check-docs
 make check-actions
 ```
 
-CI runs `make check` on pull requests and `main`. The gate includes component, interaction, accessibility, release-fallback, and post-build security/SEO tests. The GitHub Pages workflow runs the same gate before uploading a deployable artifact. Third-party Actions are pinned to immutable commit SHAs.
+CI runs `make check` on pull requests and `main`. The gate includes component, interaction, accessibility, release-fallback, and post-build security/SEO tests. The GitHub Pages workflow runs the same gate before uploading a deployable artifact. Third-party Actions are pinned to immutable commit SHAs, dependency lifecycle scripts are deny-by-default, and Dependabot checks npm plus GitHub Actions weekly.
 
 Optional local env (see `.env.example`):
 
