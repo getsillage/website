@@ -33,10 +33,26 @@ jobs:
           VITE_BASE: ${{ vars.VITE_BASE || '/website/' }}
           REQUIRE_SITE_URL: '1'
 
+      # actions/upload-pages-artifact is a composite action whose internal
+      # upload-artifact reference is tag-based. Package explicitly so the
+      # organization-wide full-SHA policy also covers this dependency.
+      - name: Package Pages artifact
+        run: |
+          tar \
+            --dereference --hard-dereference \
+            --directory dist \
+            -cvf "$RUNNER_TEMP/artifact.tar" \
+            --exclude=.git \
+            --exclude=.github \
+            .
+
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          path: dist
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
 
   deploy:
     needs: build
