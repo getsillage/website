@@ -94,7 +94,7 @@ type Messages = {
   footerContributing: string
   footerBrand: string
   footerLicense: string
-  footerSiteSource: string
+  footerWebsiteRepository: string
   footerRights: string
   footerNoHosted: string
 }
@@ -257,7 +257,7 @@ export const messages: Record<Locale, Messages> = {
     footerContributing: 'Contributing',
     footerBrand: 'Brand guide',
     footerLicense: 'MIT License',
-    footerSiteSource: 'This website',
+    footerWebsiteRepository: 'Website repository',
     footerRights: 'Open source under the MIT License.',
     footerNoHosted: 'No official hosted service.',
   },
@@ -412,7 +412,7 @@ export const messages: Record<Locale, Messages> = {
     footerContributing: '贡献指南',
     footerBrand: '品牌规范',
     footerLicense: 'MIT 许可证',
-    footerSiteSource: '本网站源码',
+    footerWebsiteRepository: '官网源码仓库',
     footerRights: '以 MIT 许可证开源。',
     footerNoHosted: '无官方托管服务。',
   },
